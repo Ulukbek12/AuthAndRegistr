@@ -4,6 +4,7 @@ import com.example.project.config.JwtUtils;
 import com.example.project.dto.LoginDto;
 import com.example.project.dto.RegisterDto;
 import com.example.project.entities.User;
+import com.example.project.interfaces.UserInterface;
 import com.example.project.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class UserService {
+public class UserService implements UserInterface {
 
     UserRepository userRepository;
 
@@ -79,10 +80,6 @@ public class UserService {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("..");
         }
-    }
-
-    public ResponseEntity<String> home(){
-        return ResponseEntity.ok().body("Home....");
     }
     public boolean isValidEmail(String email) {
         // Проверяем, что строка не пуста и содержит символ '@'
